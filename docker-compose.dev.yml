@@ -1,0 +1,78 @@
+name: be-infra
+
+services:
+  postgres_db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+
+  orders:
+    build:
+      dockerfile: ./orders.Dockerfile
+      context: .
+      target: dev
+
+    volumes:
+      - ./:/app
+    environment:
+      HOST: postgres_db
+      USERNAME: user
+      PASSWORD: password
+      DATABASE: db
+    ports:
+       - "8081:3100"
+    depends_on:
+      - postgres_db
+
+  products:
+    build:
+      dockerfile: ./products.Dockerfile
+      context: .
+      target: dev
+    expose:
+      - 3200
+    volumes:
+      - ./:/app
+    environment:
+      HOST: postgres_db
+      USERNAME: user
+      PASSWORD: password
+      DATABASE: db
+    ports:
+       - "8082:3200"
+    depends_on:
+      - postgres_db
+
+  user:
+    build:
+      dockerfile: ./user.Dockerfile
+      context: .
+      target: dev
+    expose:
+      - 3300
+    volumes:
+      - ./:/app
+    environment:
+      HOST: postgres_db
+      USERNAME: user
+      PASSWORD: password
+      DATABASE: db
+    ports:
+       - "8083:3000"
+    depends_on:
+      - postgres_db
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - orders
+      - products
+      - user

@@ -1,0 +1,4 @@
+packages:
+  - 'orders'
+  - 'products'
+  - 'user'
