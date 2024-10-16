@@ -47,6 +47,20 @@ services:
     depends_on:
       - postgres_db
 
+  logger:
+    build:
+      dockerfile: ./logger.Dockerfile
+      context: .
+      target: dev
+    expose:
+      - 8084
+    volumes:
+      - ./:/app
+    ports:
+       - "8084:8084"
+    depends_on:
+      - postgres_db
+
   # user:
   #   build:
   #     dockerfile: ./user.Dockerfile

@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model orders {
+  // orderID     String  @id(map: "PK_812b562744f8fb149ecf2361646") @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  orderID     String  @id
+  isCancelled Boolean @default(false)
+}
+
+model product {
+  productID   String @id
+  productName String @db.VarChar
+  quantity    Int    @default(0)
+}
+
+model Logs {
+  id String @id
+  // prisma by default set the column char length to 422
+  msg String? 
+  actor String?
+  // this can be date from the client side or at the time of insertion
+  createdAt DateTime @default(now())
+}

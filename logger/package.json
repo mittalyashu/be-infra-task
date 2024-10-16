@@ -1,0 +1,40 @@
+{
+  "name": "ts-simple-template",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codecarrotlabs/node-ts-simple-template"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Yashu Mittal",
+    "email": "yashu@codecarrot.net"
+  },
+  "license": "GNU Affero General Public License",
+  "bugs": {
+    "url": "https://github.com/codecarrotlabs/node-ts-simple-template/issues"
+  },
+  "homepage": "https://github.com/codecarrotlabs/node-ts-simple-template#readme",
+  "devDependencies": {
+    "@types/express": "4.17.13",
+    "@types/node": "^18.19.55",
+    "@types/uuid": "^10.0.0",
+    "nodemon": "^2.0.15",
+    "prisma": "^5.21.0",
+    "ts-node": "^10.8.2",
+    "typescript": "^4.9.5"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "dependencies": {
+    "@prisma/client": "5.21.0",
+    "express": "^4.21.1",
+    "uuid": "^10.0.0"
+  }
+}
