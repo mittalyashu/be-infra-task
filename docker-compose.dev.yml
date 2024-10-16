@@ -47,24 +47,24 @@ services:
     depends_on:
       - postgres_db
 
-  user:
-    build:
-      dockerfile: ./user.Dockerfile
-      context: .
-      target: dev
-    expose:
-      - 3300
-    volumes:
-      - ./:/app
-    environment:
-      HOST: postgres_db
-      USERNAME: user
-      PASSWORD: password
-      DATABASE: db
-    ports:
-       - "8083:3000"
-    depends_on:
-      - postgres_db
+  # user:
+  #   build:
+  #     dockerfile: ./user.Dockerfile
+  #     context: .
+  #     target: dev
+  #   expose:
+  #     - 3300
+  #   volumes:
+  #     - ./:/app
+  #   environment:
+  #     HOST: postgres_db
+  #     USERNAME: user
+  #     PASSWORD: password
+  #     DATABASE: db
+  #   ports:
+  #      - "8083:3000"
+  #   depends_on:
+  #     - postgres_db
 
   nginx:
     image: nginx:latest
@@ -75,4 +75,4 @@ services:
     depends_on:
       - orders
       - products
-      - user
+      # - user
